@@ -41,11 +41,16 @@ class Books extends Component{
 			                          <option value="currentlyReading">Currently Reading</option>
 			                          <option value="wantToRead">Want to Read</option>
 			                          <option value="read">Read</option>
+			                          <option value="none">None</option>
 			                        </select>
 			                      </div>
 			                    </div>
 			                    <div className="book-title">{book.title}</div>
-			                    <div className="book-authors">{book.authors[0]}</div>
+				                  {book.authors &&
+				                    book.authors.map((author,i) => 
+				                      <div key={i} className="book-authors">{author}</div>
+				                    )
+				                  }
 			                  </div>
 			                </li>
 										))}
@@ -72,6 +77,7 @@ class Books extends Component{
 			                          <option value="currentlyReading">Currently Reading</option>
 			                          <option value="wantToRead">Want to Read</option>
 			                          <option value="read">Read</option>
+			                          <option value="none">None</option>
 			                        </select>
 			                      </div>
 			                    </div>
@@ -103,6 +109,7 @@ class Books extends Component{
 			                          <option value="currentlyReading">Currently Reading</option>
 			                          <option value="wantToRead">Want to Read</option>
 			                          <option value="read">Read</option>
+			                          <option value="none">None</option>
 			                        </select>
 			                      </div>
 			                    </div>

@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import * as BooksAPI from './BooksAPI'
+//import keyIndex from 'react-key-index'
 
 class Search extends Component{
 
@@ -16,14 +17,13 @@ class Search extends Component{
   }
   
   search(query){
+    if(query)
     BooksAPI.search(query, 10).then((res) => {
-      console.log(this.state.books)
       this.setState({books: res})
     })
   }
   
   render(){
-    
     return(
       <div className="search-books">
         <div className="search-books-bar">
@@ -46,8 +46,8 @@ class Search extends Component{
         </div>
         <div className="search-books-results">
           <ol className="books-grid">
-            {this.state.books && this.state.books.map((book) => (
-              <li key={book.id}>
+            {this.state.books.length > 0 && this.state.books.map((book, i) => (
+              <li key={i}>
                 <div className="book">
                   <div className="book-top">
                     <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${book.imageLinks.thumbnail})` }}></div>
@@ -62,8 +62,8 @@ class Search extends Component{
                   </div>
                   <div className="book-title">{book.title}</div>
                   {book.authors &&
-                    book.authors.map((author,i) => 
-                      <div key={i} className="book-authors">{author}</div>
+                    book.authors.map((author) => 
+                      <div key={author} className="book-authors">{author}</div>
                     )
                   }
                 </div>
