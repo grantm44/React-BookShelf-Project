@@ -43,4 +43,4 @@ class Shelf extends Component{
 	}
 }
 
-export default Shelf
+export default Shelf;
