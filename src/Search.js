@@ -23,6 +23,16 @@ class Search extends Component{
     })
   }
   
+  checkShelf(booka){
+    var shelf ='none'
+    this.props.books.forEach(book => {
+      if(booka.id === book.id){
+        shelf = book.shelf
+      }   
+    })
+    return shelf
+  }
+
   render(){
     return(
       <div className="search-books">
@@ -52,7 +62,7 @@ class Search extends Component{
                   <div className="book-top">
                     <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${book.imageLinks.thumbnail})` }}></div>
                     <div className="book-shelf-changer">
-                      <select defaultValue={book.shelf} onChange={(event) => this.onShelfChange(book, event.target.value)} >
+                      <select value={this.checkShelf(book)} onChange={(event) => this.onShelfChange(book, event.target.value)} >
                         <option value="none" disabled>Move to...</option>
                         <option value="currentlyReading">Currently Reading</option>
                         <option value="wantToRead">Want to Read</option>
